@@ -30,17 +30,12 @@ public class BoardTest extends TestCase {
         board.switchStatusCell(1, 3);
         board.switchStatusCell(0, 2);
         assertEquals(2,board.countingNumberOfNeighbors(new Cell(1,2)));
+        assertEquals(3,board.countingNumberOfNeighbors(new Cell(0,3)));
     }
 
     public void testCheckingConditionsToReborn() {
 
     }
-
-
-    public void testCheckToReborn() {
-
-    }
-
     public void testFindNextGeneration() {
 
     }

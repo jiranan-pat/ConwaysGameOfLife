@@ -10,6 +10,7 @@ public class Board {
     private List<Cell> cellList;
     private List<Cell> aliveCellList;
     private List<Cell> nextGenAliveCellList;
+//    private List<Cell> deadNeighborList;
 
     public Board() {
         init();
@@ -40,12 +41,12 @@ public class Board {
     //Any live cell with two or three live neighbors lives on to the next generation.
     //Any live cell with more than three live neighbors dies, as if by overpopulation.
     public void findNextGeneration() {
+        // consider only alive cells
         for (int i = 0; i < aliveCellList.size(); i++) {
             Cell currentAliveCell = aliveCellList.get(i);
             int count = countingNumberOfNeighbors(currentAliveCell);
             if (count < 2 || count > 3) currentAliveCell.switchStatus();
             else nextGenAliveCellList.add(currentAliveCell);
-
         }
     }
 
@@ -62,7 +63,6 @@ public class Board {
         int y = centerCell.getY();
         int count = 0;
 
-
         count += checkToReborn(searchCell(x - 1, y - 1));
         count += checkToReborn(searchCell(x - 1, y));
         count += checkToReborn(searchCell(x - 1, y + 1));
@@ -72,6 +72,35 @@ public class Board {
         count += checkToReborn(searchCell(x + 1, y - 1));
         count += checkToReborn(searchCell(x, y - 1));
 
+//        if(searchCell(x-1,y-1).isAlive()) count++;
+//        if(searchCell(x - 1, y).isAlive()) count++;
+//        if(searchCell(x - 1, y + 1).isAlive()) count++;
+//        if(searchCell(x, y + 1).isAlive()) count++;
+//        if(searchCell(x + 1, y + 1).isAlive()) count++;
+//        if(searchCell(x + 1, y).isAlive()) count++;
+//        if(searchCell(x + 1, y - 1).isAlive()) count++;
+//        if(searchCell(x, y - 1).isAlive()) count++;
+
+
+        return count;
+    }
+
+
+
+    public int countingNumberOfDeadNeighbors(Cell centerCell) {
+        int x = centerCell.getX();
+        int y = centerCell.getY();
+        int count = 0;
+
+        if(searchCell(x-1,y-1).isAlive()) count++;
+        if(searchCell(x - 1, y).isAlive()) count++;
+        if(searchCell(x - 1, y + 1).isAlive()) count++;
+        if(searchCell(x, y + 1).isAlive()) count++;
+        if(searchCell(x + 1, y + 1).isAlive()) count++;
+        if(searchCell(x + 1, y).isAlive()) count++;
+        if(searchCell(x + 1, y - 1).isAlive()) count++;
+        if(searchCell(x, y - 1).isAlive()) count++;
+
         return count;
     }
 
@@ -79,7 +108,7 @@ public class Board {
         if (cell.isAlive())
             return 1;
         else {
-            checkingConditionsToReborn(cell, countingNumberOfNeighbors(cell));
+            checkingConditionsToReborn(cell, countingNumberOfDeadNeighbors(cell));
             return 0;
         }
     }
@@ -94,6 +123,8 @@ public class Board {
         //refactor
         return new Cell(-1, -1);
     }
+
+
 
 
 }
