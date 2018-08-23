@@ -37,7 +37,7 @@ public class Cell {
 
     public void paintCell(Graphics graphics) {
         if(isAlive) {
-            graphics.setColor(Color.BLACK);
+            graphics.setColor(Color.DARK_GRAY);
         } else if (!isAlive) {
             graphics.setColor(Color.WHITE);
         }

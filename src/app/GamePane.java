@@ -15,31 +15,31 @@ public class GamePane extends JPanel implements MouseListener {
     public GamePane(){
         initCells();
         this.addMouseListener(this);
+
     }
 
     public void initCells() {
         for (int x = 0; x < 20; x++) {
             for (int y = 0; y < 20; y++) {
-                cell[x][y] = new Cell(x * 40, y * 40);
+                cell[x][y] = new Cell(x * 40 , y * 40);
             }
         }
     }
 
+
+
     public void paint(Graphics graphics) {
         super.paintComponents(graphics);
 
-        //Bg
         graphics.setColor(Color.WHITE);
-        graphics.fillRect(0, 0, 800, 800);
+        graphics.fillRect(0,0,800,820);
 
-        //Cell
         for (int x = 0; x < 20; x++) {
             for (int y = 0; y < 20; y++) {
                 cell[x][y].paintCell(graphics);
             }
         }
 
-        //Board
         graphics.setColor(Color.GREEN);
         for (int x = 0; x < 40; x++) {
             graphics.drawLine(40 * x, 0, 40 * x, 800);
@@ -47,7 +47,10 @@ public class GamePane extends JPanel implements MouseListener {
         for (int y = 0; y < 40; y++) {
             graphics.drawLine(0, 40 * y, 800, 40 * y);
         }
+
     }
+
+
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -59,6 +62,7 @@ public class GamePane extends JPanel implements MouseListener {
         int x = e.getX()/40;
         int y = e.getY()/40;
         cell[x][y].setAlive(true);
+
         System.out.println("X: "+x+ " Y: " +y);
 
     }
@@ -78,8 +82,5 @@ public class GamePane extends JPanel implements MouseListener {
 
     }
 
-    private void run() {
-
-    }
 
 }
