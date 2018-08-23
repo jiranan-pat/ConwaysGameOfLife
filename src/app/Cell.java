@@ -1,5 +1,7 @@
 package app;
 
+import java.awt.*;
+
 public class Cell {
 
     private int x;
@@ -26,10 +28,20 @@ public class Cell {
     }
 
     public void setAlive(boolean alive) {
-        isAlive = alive;
+        this.isAlive = alive;
     }
 
     public void switchStatus(){
         isAlive = !isAlive;
+    }
+
+    public void paintCell(Graphics graphics) {
+        if(isAlive) {
+            graphics.setColor(Color.BLACK);
+        } else if (!isAlive) {
+            graphics.setColor(Color.WHITE);
+        }
+
+        graphics.fillRect(x,y,40,40);
     }
 }
