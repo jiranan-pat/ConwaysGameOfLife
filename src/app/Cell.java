@@ -14,31 +14,32 @@ public class Cell {
         this.isAlive  = false;
     }
 
-    public int getX() {
-        return x;
-    }
+    public int getX() { return x; }
 
     public int getY() {
         return y;
     }
 
-
     public boolean isAlive() {
         return isAlive;
     }
 
-    public void setAlive(boolean alive) {
-        this.isAlive = alive;
+    public void setAlive() {
+        this.isAlive = true;
     }
 
-    public void switchStatus(){
-        isAlive = !isAlive;
+    public void setDead() {
+        this.isAlive = false;
     }
+
+//    public void switchStatus(){
+//        isAlive = !isAlive;
+//    }
 
     public void paintCell(Graphics graphics) {
         if(isAlive) {
             graphics.setColor(Color.DARK_GRAY);
-        } else if (!isAlive) {
+        } else {
             graphics.setColor(Color.WHITE);
         }
 
