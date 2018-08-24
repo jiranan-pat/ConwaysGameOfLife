@@ -61,7 +61,7 @@ public class GamePane extends JPanel implements MouseListener {
     public void mousePressed(MouseEvent e) {
         int x = e.getX()/40;
         int y = e.getY()/40;
-        cell[x][y].setAlive(true);
+        cell[x][y].setAlive();
 
         System.out.println("X: "+x+ " Y: " +y);
 
