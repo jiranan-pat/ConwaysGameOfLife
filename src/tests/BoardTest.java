@@ -14,29 +14,23 @@ public class BoardTest extends TestCase {
         board = new Board();
     }
 
-//    public void testSwitchToAlive() {
-//        board.switchStatusCell(6, 7);
-//        board.switchStatusCell(9, 11);
-//        assertEquals(2, board.getAliveCellList().size());
-//    }
-
     public void testSwitchToAliveExceedBoard() {
-        board.switchStatusCell(50, 1);
+        board.searchCell(50,1).setAlive();
         assertEquals(0, board.getAliveCellList().size());
     }
 
     public void testCountingNumberOfNeighbors() {
-        board.switchStatusCell(1, 2);
-        board.switchStatusCell(1, 3);
-        board.switchStatusCell(0, 2);
+        board.searchCell(1, 2).setAlive();
+        board.searchCell(1, 3).setAlive();
+        board.searchCell(0, 2).setAlive();
         assertEquals(2,board.countingNumberOfNeighbors(new Cell(1,2)));
         assertEquals(3,board.countingNumberOfNeighbors(new Cell(0,3)));
     }
 
-    public void testCheckingConditionsToReborn() {
-
-    }
     public void testFindNextGeneration() {
-
+        board.setCellAlive(4, 4);
+        board.setCellAlive(4, 5);
+        board.setCellAlive(5, 4);
+        assertEquals(4,board.findNextGeneration().size());
     }
 }
