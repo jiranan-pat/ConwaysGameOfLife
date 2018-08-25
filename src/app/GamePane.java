@@ -2,43 +2,44 @@ package app;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 
-public class GamePane extends JPanel implements MouseListener {
+public class GamePane extends JPanel implements MouseListener{
 
-    private Cell[][] cell = new Cell[20][20];
-    private boolean start = false;
+    private Game game = new Game();
 
-
-    public GamePane(){
-        initCells();
+    public GamePane() {
         this.addMouseListener(this);
-
-    }
-
-    public void initCells() {
-        for (int x = 0; x < 20; x++) {
-            for (int y = 0; y < 20; y++) {
-                cell[x][y] = new Cell(x * 40 , y * 40);
+        this.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
             }
-        }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                    game.start();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
     }
-
-
 
     public void paint(Graphics graphics) {
         super.paintComponents(graphics);
 
         graphics.setColor(Color.WHITE);
-        graphics.fillRect(0,0,800,820);
+        graphics.fillRect(0, 0, 800, 820);
 
-        for (int x = 0; x < 20; x++) {
-            for (int y = 0; y < 20; y++) {
-                cell[x][y].paintCell(graphics);
-            }
-        }
+        for (Cell c : game.getCurrentAliveCellList())
+            c.paintCell(graphics);
 
         graphics.setColor(Color.GREEN);
         for (int x = 0; x < 40; x++) {
@@ -51,36 +52,29 @@ public class GamePane extends JPanel implements MouseListener {
     }
 
 
-
     @Override
     public void mouseClicked(MouseEvent e) {
-
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        int x = e.getX()/40;
-        int y = e.getY()/40;
-        cell[x][y].setAlive();
-
-        System.out.println("X: "+x+ " Y: " +y);
-
+        int x = e.getX() / 40;
+        int y = e.getY() / 40;
+        game.initialCellDeadOrAlive(x, y);
+        this.repaint();
+        System.out.println("X: " + x + " Y: " + y);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
     }
-
 
 }

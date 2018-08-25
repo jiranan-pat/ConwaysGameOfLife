@@ -28,11 +28,12 @@ public class Board {
         }
     }
 
-    public void setCellAlive(int x, int y){
+    public void initialCellDeadOrAlive(int x, int y){
         Cell cell = searchCell(x,y);
         if(cell.getX()>=0){
-            cell.setAlive();
-            aliveCellList.add(cell);
+            cell.switchDeadOrAlive();
+            if(cell.isAlive())
+                aliveCellList.add(cell);
         }
     }
 

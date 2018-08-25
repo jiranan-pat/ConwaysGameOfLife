@@ -28,9 +28,9 @@ public class BoardTest extends TestCase {
     }
 
     public void testFindNextGeneration() {
-        board.setCellAlive(4, 4);
-        board.setCellAlive(4, 5);
-        board.setCellAlive(5, 4);
+        board.initialCellDeadOrAlive(4, 4);
+        board.initialCellDeadOrAlive(4, 5);
+        board.initialCellDeadOrAlive(5, 4);
         assertEquals(4,board.findNextGeneration().size());
     }
 }

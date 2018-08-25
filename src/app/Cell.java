@@ -32,9 +32,9 @@ public class Cell {
         this.isAlive = false;
     }
 
-//    public void switchStatus(){
-//        isAlive = !isAlive;
-//    }
+    public void switchDeadOrAlive(){
+        isAlive = !isAlive;
+    }
 
     public void paintCell(Graphics graphics) {
         if(isAlive) {
@@ -43,6 +43,6 @@ public class Cell {
             graphics.setColor(Color.WHITE);
         }
 
-        graphics.fillRect(x,y,40,40);
+        graphics.fillRect(x*40,y*40,40,40);
     }
 }

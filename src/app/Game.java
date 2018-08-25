@@ -15,9 +15,12 @@ public class Game {
         return nextGenAliveCells;
     }
 
-    public void setInitialCellAlive(int x, int y) {
-        board.setCellAlive(x, y);
-        previousGenAliveCells.add(board.searchCell(x, y));
+    public void initialCellDeadOrAlive(int x, int y) {
+        board.initialCellDeadOrAlive(x, y);
+    }
+
+    public List<Cell> getCurrentAliveCellList() {
+        return board.getAliveCellList();
     }
 
     public boolean isStable(List<Cell> nextGenAliveCells) {
@@ -33,6 +36,10 @@ public class Game {
                 return false;
         }
         return true;
+    }
+
+    public void start(){
+        System.out.println("start!!!!");
     }
 
 }
