@@ -11,7 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 
-public class GamePane extends JPanel implements MouseListener{
+public class GamePane extends JPanel implements MouseListener {
 
     private Game game = new Game();
 
@@ -24,8 +24,8 @@ public class GamePane extends JPanel implements MouseListener{
 
             @Override
             public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == KeyEvent.VK_ENTER){
-                    game.start();
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    startGame();
                 }
             }
 
@@ -33,6 +33,24 @@ public class GamePane extends JPanel implements MouseListener{
             public void keyReleased(KeyEvent e) {
             }
         });
+    }
+
+    public void startGame() {
+        int i = 0;
+        do {
+            System.out.println("start!!!!  " + i++);
+
+            game.gameLogic();
+
+            try {
+                this.repaint(); //TODO:success repaint
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } while (!game.isStable());
+        System.out.println("game is stable");
+
     }
 
     public void paint(Graphics graphics) {

@@ -1,6 +1,7 @@
 package app;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Game {
@@ -10,36 +11,51 @@ public class Game {
     private List<Cell> previousGenAliveCells = new ArrayList<>();
 
     public List<Cell> getNextGeneration() {
-        List<Cell> nextGenAliveCells = board.findNextGeneration();
-        isStable = isStable(nextGenAliveCells);
-        return nextGenAliveCells;
+        return board.findNextGeneration();
     }
 
     public void initialCellDeadOrAlive(int x, int y) {
         board.initialCellDeadOrAlive(x, y);
+        previousGenAliveCells = board.getAliveCellList();
     }
 
     public List<Cell> getCurrentAliveCellList() {
-        return board.getAliveCellList();
+        System.out.println("getCurrentAliveCellList");
+        return previousGenAliveCells;
     }
 
     public boolean isStable(List<Cell> nextGenAliveCells) {
+        System.out.println(">>>p" + Arrays.toString(previousGenAliveCells.toArray()));
+        if(previousGenAliveCells.size() != nextGenAliveCells.size())
+            return false;
+
+        int countEqual = 0;
         for (Cell preCell : previousGenAliveCells) {
-            boolean isFind = false;
             for (Cell nextCell : nextGenAliveCells) {
-               if(preCell.getX() == nextCell.getX() && preCell.getY() == nextCell.getY()) {
-                   isFind = true;
-                   break;
-               }
+                if (preCell.equals(nextCell)) {
+                    countEqual++;
+                    break;
+                }
             }
-            if(!isFind)
-                return false;
         }
-        return true;
+        return countEqual == previousGenAliveCells.size();
     }
 
-    public void start(){
-        System.out.println("start!!!!");
+    public boolean isStable() {
+        return isStable;
+    }
+
+    public void gameLogic() {
+        List<Cell> nextGenList = getNextGeneration();
+        System.out.println(">>>" + Arrays.toString(nextGenList.toArray()));
+        if (!isStable(nextGenList)) {
+            System.out.println("!isstable");
+            previousGenAliveCells = new ArrayList<>(nextGenList);
+            isStable = false;
+        } else {
+            System.out.println("isstable");
+            isStable = true;
+        }
     }
 
 }

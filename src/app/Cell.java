@@ -11,10 +11,12 @@ public class Cell {
     public Cell(int x, int y) {
         this.x = x;
         this.y = y;
-        this.isAlive  = false;
+        this.isAlive = false;
     }
 
-    public int getX() { return x; }
+    public int getX() {
+        return x;
+    }
 
     public int getY() {
         return y;
@@ -32,17 +34,31 @@ public class Cell {
         this.isAlive = false;
     }
 
-    public void switchDeadOrAlive(){
+    public void switchDeadOrAlive() {
         isAlive = !isAlive;
     }
 
     public void paintCell(Graphics graphics) {
-        if(isAlive) {
+        if (isAlive) {
             graphics.setColor(Color.DARK_GRAY);
         } else {
             graphics.setColor(Color.WHITE);
         }
 
-        graphics.fillRect(x*40,y*40,40,40);
+        graphics.fillRect(x * 40, y * 40, 40, 40);
+    }
+
+    @Override
+    public String toString() {
+        return "[" + x + "," + y + "]";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Cell){
+            Cell c = (Cell) obj;
+            return this.x == c.x && this.y == c.y;
+        }
+        return false;
     }
 }
