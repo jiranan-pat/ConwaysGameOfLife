@@ -1,4 +1,7 @@
-package app;
+package app.swings;
+
+import app.Cell;
+import app.Game;
 
 import javax.swing.*;
 import java.awt.*;
