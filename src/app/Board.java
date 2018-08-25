@@ -12,7 +12,6 @@ public class Board {
     private List<Cell> aliveCellList;
     private List<Cell> toBeDeadCellList;
     private List<Cell> nextGenAliveCellList;
-//    private List<Cell> deadNeighborList;
 
     public Board() {
         init();

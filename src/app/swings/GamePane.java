@@ -36,22 +36,61 @@ public class GamePane extends JPanel implements MouseListener {
     }
 
     public void startGame() {
-        int i = 0;
-        do {
-            System.out.println("start!!!!  " + i++);
 
-            game.gameLogic();
-
-            try {
-                this.repaint(); //TODO:success repaint
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        new Thread(new Runnable() {
+            public void run()
+            {
+                int i = 0;
+                do {
+                    System.out.println("start!!!!  " + i++);
+                    game.gameLogic();
+                    repaint();
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } while (!game.isStable());
+                System.out.println("game is stable");
             }
-        } while (!game.isStable());
-        System.out.println("game is stable");
+        }).start();
+
+//        int i = 0;
+//        do {
+//            System.out.println("start!!!!  " + i++);
+//            repaint();
+//            game.gameLogic();
+//
+//            try {
+//
+//                Thread.sleep(2000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        } while (!game.isStable());
+//        System.out.println("game is stable");
 
     }
+
+//    private Runnable runner = new Runnable() {
+//        public void run()
+//        {
+//            int i = 0;
+//            do {
+//                System.out.println("start!!!!  " + i++);
+//
+//                game.gameLogic();
+//                repaint();
+//
+//                try {
+//                    Thread.sleep(2000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            } while (!game.isStable());
+//            System.out.println("game is stable");
+//        }
+//    };
 
     public void paint(Graphics graphics) {
         super.paintComponents(graphics);

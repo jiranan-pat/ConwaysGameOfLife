@@ -20,7 +20,6 @@ public class Game {
     }
 
     public List<Cell> getCurrentAliveCellList() {
-        System.out.println("getCurrentAliveCellList");
         return previousGenAliveCells;
     }
 
