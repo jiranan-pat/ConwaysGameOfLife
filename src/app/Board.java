@@ -50,6 +50,7 @@ public class Board {
             if (count < 2 || count > 3) currentAliveCell.setDead();
             else nextGenAliveCellList.add(currentAliveCell);
         }
+        aliveCellList = new ArrayList<>(nextGenAliveCellList);
         return nextGenAliveCellList;
     }
 
@@ -74,15 +75,6 @@ public class Board {
         count += checkToReborn(searchCell(x + 1, y));
         count += checkToReborn(searchCell(x + 1, y - 1));
         count += checkToReborn(searchCell(x, y - 1));
-
-//        if(searchCell(x-1,y-1).isAlive()) count++;
-//        if(searchCell(x - 1, y).isAlive()) count++;
-//        if(searchCell(x - 1, y + 1).isAlive()) count++;
-//        if(searchCell(x, y + 1).isAlive()) count++;
-//        if(searchCell(x + 1, y + 1).isAlive()) count++;
-//        if(searchCell(x + 1, y).isAlive()) count++;
-//        if(searchCell(x + 1, y - 1).isAlive()) count++;
-//        if(searchCell(x, y - 1).isAlive()) count++;
 
         return count;
     }
@@ -122,8 +114,5 @@ public class Board {
         //TODO: refactor
         return new Cell(-1, -1);
     }
-
-
-
 
 }
