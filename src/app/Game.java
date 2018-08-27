@@ -1,7 +1,6 @@
 package app;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -43,7 +42,7 @@ public class Game {
         return currentGenAliveCells;
     }
 
-    public boolean isStable(List<Cell> nextGenAliveCells) {
+    private boolean isStable(List<Cell> nextGenAliveCells) {
         if (currentGenAliveCells.size() != nextGenAliveCells.size())
             return false;
 
@@ -65,7 +64,6 @@ public class Game {
 
     public void gameLogic() {
         List<Cell> nextGenAliveCells = findNextGeneration();
-        System.out.println(">>>" + Arrays.toString(nextGenAliveCells.toArray()));
         if (!isStable(nextGenAliveCells)) {
             currentGenAliveCells = new ArrayList<>(nextGenAliveCells);
             board.setAliveCellList(nextGenAliveCells);
