@@ -38,19 +38,19 @@ public class Board {
             int x = cell.getX();
             int y = cell.getY();
 
-            addNonDupicateCellTo(neighborCells, new Cell(x - 1, y - 1));
-            addNonDupicateCellTo(neighborCells, new Cell(x - 1, y));
-            addNonDupicateCellTo(neighborCells, new Cell(x - 1, y + 1));
-            addNonDupicateCellTo(neighborCells, new Cell(x, y + 1));
-            addNonDupicateCellTo(neighborCells, new Cell(x + 1, y + 1));
-            addNonDupicateCellTo(neighborCells, new Cell(x + 1, y));
-            addNonDupicateCellTo(neighborCells, new Cell(x + 1, y - 1));
-            addNonDupicateCellTo(neighborCells, new Cell(x, y - 1));
+            addNonDuplicateCellTo(neighborCells, new Cell(x - 1, y - 1));
+            addNonDuplicateCellTo(neighborCells, new Cell(x - 1, y));
+            addNonDuplicateCellTo(neighborCells, new Cell(x - 1, y + 1));
+            addNonDuplicateCellTo(neighborCells, new Cell(x, y + 1));
+            addNonDuplicateCellTo(neighborCells, new Cell(x + 1, y + 1));
+            addNonDuplicateCellTo(neighborCells, new Cell(x + 1, y));
+            addNonDuplicateCellTo(neighborCells, new Cell(x + 1, y - 1));
+            addNonDuplicateCellTo(neighborCells, new Cell(x, y - 1));
         }
         return neighborCells;
     }
 
-    private void addNonDupicateCellTo(List<Cell> list, Cell newCell) {
+    private void addNonDuplicateCellTo(List<Cell> list, Cell newCell) {
         if (!list.contains(newCell) && isCellInBoardBound(newCell))
             list.add(newCell);
     }
