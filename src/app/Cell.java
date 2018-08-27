@@ -14,9 +14,7 @@ public class Cell {
         this.isAlive = false;
     }
 
-    public int getX() {
-        return x;
-    }
+    public int getX() { return x; }
 
     public int getY() {
         return y;
@@ -30,13 +28,7 @@ public class Cell {
         this.isAlive = true;
     }
 
-    public void setDead() {
-        this.isAlive = false;
-    }
-
-    public void switchDeadOrAlive() {
-        isAlive = !isAlive;
-    }
+    public void switchDeadOrAlive() { isAlive = !isAlive; }
 
     public void paintCell(Graphics graphics) {
         if (isAlive)
