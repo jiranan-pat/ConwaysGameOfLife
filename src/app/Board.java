@@ -9,7 +9,7 @@ public class Board {
     private final int HEIGHT = 20;
     private List<Cell> aliveCellList;
 
-    public Board(){
+    public Board() {
         aliveCellList = new ArrayList<>();
     }
 
@@ -50,12 +50,12 @@ public class Board {
         return neighborCells;
     }
 
-    public void addUniqueCellTo(Cell newCell, List<Cell> list) {
+    private void addUniqueCellTo(Cell newCell, List<Cell> list) {
         if (!list.contains(newCell) && isCellInTable(newCell))
             list.add(newCell);
     }
 
-    public boolean isCellInTable(Cell cell) {
+    private boolean isCellInTable(Cell cell) {
         return cell.getX() < WIDTH && cell.getX() >= 0 && cell.getY() < HEIGHT && cell.getY() >= 0;
     }
 
@@ -76,11 +76,10 @@ public class Board {
         return count;
     }
 
-    public Cell searchCell(int x, int y) {
+    private Cell searchCell(int x, int y) {
         for (Cell currentCell : aliveCellList) {
-            if (currentCell.getX() == x && currentCell.getY() == y) {
+            if (currentCell.equals(new Cell(x, y)))
                 return currentCell;
-            }
         }
         return new Cell(x, y);
     }

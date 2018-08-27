@@ -17,7 +17,7 @@ public class Game {
     private boolean isStable = false;
     private List<Cell> currentGenAliveCells = new ArrayList<>();
 
-    public List<Cell> getNextGeneration() {
+    public List<Cell> findNextGeneration() {
         List<Cell> nextGenAliveCellList = new ArrayList<>();
         List<Cell> beConsideredCells = board.findAllBeConsideredCells(currentGenAliveCells);
         for (Cell currentCell : beConsideredCells) {
@@ -37,8 +37,6 @@ public class Game {
     public void initialCellDeadOrAlive(int x, int y) {
         board.initialCellDeadOrAlive(x, y);
         currentGenAliveCells = board.getAliveCellList();
-        System.out.println(">>>init" + Arrays.toString(currentGenAliveCells.toArray()));
-
     }
 
     public List<Cell> getCurrentAliveCellList() {
@@ -46,7 +44,6 @@ public class Game {
     }
 
     public boolean isStable(List<Cell> nextGenAliveCells) {
-        System.out.println(">>>p" + Arrays.toString(currentGenAliveCells.toArray()));
         if (currentGenAliveCells.size() != nextGenAliveCells.size())
             return false;
 
@@ -67,15 +64,13 @@ public class Game {
     }
 
     public void gameLogic() {
-        List<Cell> nextGenAliveCells = getNextGeneration();
+        List<Cell> nextGenAliveCells = findNextGeneration();
         System.out.println(">>>" + Arrays.toString(nextGenAliveCells.toArray()));
         if (!isStable(nextGenAliveCells)) {
-            System.out.println("!isstable");
             currentGenAliveCells = new ArrayList<>(nextGenAliveCells);
             board.setAliveCellList(nextGenAliveCells);
             isStable = false;
         } else {
-            System.out.println("isstable");
             isStable = true;
         }
     }
