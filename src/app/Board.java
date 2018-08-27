@@ -15,7 +15,7 @@ public class Board {
 
     public void initialCellDeadOrAlive(int x, int y) {
         Cell cell = searchCell(x, y);
-        if (isCellInTable(cell)) {
+        if (isCellInBoardBound(cell)) {
             cell.switchDeadOrAlive();
             if (cell.isAlive())
                 aliveCellList.add(cell);
@@ -38,24 +38,24 @@ public class Board {
             int x = cell.getX();
             int y = cell.getY();
 
-            addUniqueCellTo(new Cell(x - 1, y - 1), neighborCells);
-            addUniqueCellTo(new Cell(x - 1, y), neighborCells);
-            addUniqueCellTo(new Cell(x - 1, y + 1), neighborCells);
-            addUniqueCellTo(new Cell(x, y + 1), neighborCells);
-            addUniqueCellTo(new Cell(x + 1, y + 1), neighborCells);
-            addUniqueCellTo(new Cell(x + 1, y), neighborCells);
-            addUniqueCellTo(new Cell(x + 1, y - 1), neighborCells);
-            addUniqueCellTo(new Cell(x, y - 1), neighborCells);
+            addNonDupicateCellTo(neighborCells, new Cell(x - 1, y - 1));
+            addNonDupicateCellTo(neighborCells, new Cell(x - 1, y));
+            addNonDupicateCellTo(neighborCells, new Cell(x - 1, y + 1));
+            addNonDupicateCellTo(neighborCells, new Cell(x, y + 1));
+            addNonDupicateCellTo(neighborCells, new Cell(x + 1, y + 1));
+            addNonDupicateCellTo(neighborCells, new Cell(x + 1, y));
+            addNonDupicateCellTo(neighborCells, new Cell(x + 1, y - 1));
+            addNonDupicateCellTo(neighborCells, new Cell(x, y - 1));
         }
         return neighborCells;
     }
 
-    private void addUniqueCellTo(Cell newCell, List<Cell> list) {
-        if (!list.contains(newCell) && isCellInTable(newCell))
+    private void addNonDupicateCellTo(List<Cell> list, Cell newCell) {
+        if (!list.contains(newCell) && isCellInBoardBound(newCell))
             list.add(newCell);
     }
 
-    private boolean isCellInTable(Cell cell) {
+    private boolean isCellInBoardBound(Cell cell) {
         return cell.getX() < WIDTH && cell.getX() >= 0 && cell.getY() < HEIGHT && cell.getY() >= 0;
     }
 
