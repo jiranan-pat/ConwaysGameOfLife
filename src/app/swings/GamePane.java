@@ -44,53 +44,18 @@ public class GamePane extends JPanel implements MouseListener {
                 do {
                     System.out.println("start!!!!  " + i++);
                     game.gameLogic();
-                    repaint();
                     try {
                         Thread.sleep(2000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                    repaint();
                 } while (!game.isStable());
                 System.out.println("game is stable");
             }
         }).start();
 
-//        int i = 0;
-//        do {
-//            System.out.println("start!!!!  " + i++);
-//            repaint();
-//            game.gameLogic();
-//
-//            try {
-//
-//                Thread.sleep(2000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        } while (!game.isStable());
-//        System.out.println("game is stable");
-
     }
-
-//    private Runnable runner = new Runnable() {
-//        public void run()
-//        {
-//            int i = 0;
-//            do {
-//                System.out.println("start!!!!  " + i++);
-//
-//                game.gameLogic();
-//                repaint();
-//
-//                try {
-//                    Thread.sleep(2000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//            } while (!game.isStable());
-//            System.out.println("game is stable");
-//        }
-//    };
 
     public void paint(Graphics graphics) {
         super.paintComponents(graphics);
@@ -121,7 +86,7 @@ public class GamePane extends JPanel implements MouseListener {
         int x = e.getX() / 40;
         int y = e.getY() / 40;
         game.initialCellDeadOrAlive(x, y);
-        this.repaint();
+        repaint();
         System.out.println("X: " + x + " Y: " + y);
     }
 

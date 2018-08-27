@@ -39,12 +39,10 @@ public class Cell {
     }
 
     public void paintCell(Graphics graphics) {
-        if (isAlive) {
+        if (isAlive)
             graphics.setColor(Color.DARK_GRAY);
-        } else {
+        else
             graphics.setColor(Color.WHITE);
-        }
-
         graphics.fillRect(x * 40, y * 40, 40, 40);
     }
 
@@ -55,7 +53,7 @@ public class Cell {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Cell){
+        if (obj instanceof Cell) {
             Cell c = (Cell) obj;
             return this.x == c.x && this.y == c.y;
         }

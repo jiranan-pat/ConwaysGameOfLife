@@ -23,14 +23,8 @@ public class BoardTest extends TestCase {
         board.searchCell(1, 2).setAlive();
         board.searchCell(1, 3).setAlive();
         board.searchCell(0, 2).setAlive();
-        assertEquals(2,board.countingNumberOfNeighbors(new Cell(1,2)));
-        assertEquals(3,board.countingNumberOfNeighbors(new Cell(0,3)));
+        assertEquals(2,board.countAliveNeighborsOf(new Cell(1,2)));
+        assertEquals(3,board.countAliveNeighborsOf(new Cell(0,3)));
     }
 
-    public void testFindNextGeneration() {
-        board.initialCellDeadOrAlive(4, 4);
-        board.initialCellDeadOrAlive(4, 5);
-        board.initialCellDeadOrAlive(5, 4);
-        assertEquals(4,board.findNextGeneration().size());
-    }
 }
